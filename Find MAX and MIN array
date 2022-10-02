@@ -1,0 +1,34 @@
+package DSA;
+import java.util.*;
+
+public class Max_min {
+        public static void main(String[] args) {
+          Scanner r = new Scanner(System.in);
+          System.out.println("Enter No Of elements: ");
+          System.out.println(" Enter array Element: ");
+          int n = r.nextInt();
+          r.close();
+          int[] arr = new int [n];
+          for(int i=0;i<n;i++)
+          {
+              arr[i] = r.nextInt();
+          }
+           
+            int max = -2147483648,min =2147483647;
+          for(int i = 0;i<n;i++)
+          {
+            if(arr[i]>max)
+            {
+               max = arr[i];
+            }
+            if(arr[i]<min){
+               min = arr[i];
+            }
+          }
+          System.out.println( "Maximum element: " + max +" " + "Minimum element: " + min);
+          
+        }
+    }
+    
+    
+
