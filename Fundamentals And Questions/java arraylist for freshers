@@ -1,0 +1,70 @@
+1. How to remove duplicates from ArrayList in Java? 
+Answer:
+This is a task-based question. Since the List interface allows duplicates,
+ArrayList also allowed it but if you remember Set interface doesn't allow duplicates,
+which means you can remove duplicates from ArrayList by converting it into a Set and then back to ArrayList,
+but how will you keep the order intact? See the answer for a more detailed explanation.
+
+
+2. How to reverse ArrayList in Java?
+Answer:
+You can reverse ArrayList by using the Collections.reverse() method.  There are a couple of 
+more ways like iterating through the list and copying elements into a new list. See the answer 
+for more ways to do this task.
+
+3. Difference between an array and an ArrayList in Java?
+Answer:
+This is a fresher-level interview question, the main difference between array
+and ArrayList is that the former is static and the latter is dynamic. You cannot 
+change the size of the array once created, but ArrayList can grow and increase its size automatically.
+
+
+4. How to synchronize ArrayList in Java?
+(Answer):
+This is a very good task-based question. If you remember, ArrayList is not thread-safe,
+its not synchronized either, which means you cannot share it between multiple threads
+if one of them modifies it. Don't worry, you can synchronize ArrayList by using Collections.
+synchronizedList() method. Check the answer to understand the steps.
+
+
+5. When to use ArrayList and LinkedList in Java?
+Answer:
+This is by far the most popular ArrayList based question from Java Interviews and you can answer it very 
+easily if you are familiar with two key data structures, array, and linked list. 
+Since array provides constant-time search operation, it's better to use ArrayList if 
+search outnumbers add and remove operation, otherwise use LinkedList which provides constant
+time add and remove operation. See the answer for a more detailed discussion on this topic.
+
+6. Difference between ArrayList and HashSet in Java?
+Answer:
+One of the simplest questions you will ever see on a Java interview. The main difference is
+the former is List while the later is Set which means ArrayList allowed duplicates, keeps elements 
+in order while HashSet doesn't allow duplicates and provides no ordering guarantee.
+
+
+7. How to loop over ArrayList in Java? 
+Answer:
+There are many ways to traverse over ArrayList, you can use classic for loop with index,
+or you can take iterator from ArrayList and can use while loop in conjunction with Iterator.
+hasNext() method, Or you can use the new foreach loop introduced in Java 5, which doesn't require an index. See the answer to live examples.
+
+
+8. Difference between Vector and ArrayList in Java? 
+Answer:
+This is the second most popular question based on ArrayList in Java.
+Though both Vector and ArrayList implement List interface, Vector is synchronized
+while ArrayList is not synchronized, which means the former is thread-safe and fast while the latter is not thread-safe and slow.
+
+
+9. How to create and initialize ArrayList in one line?
+Answer:
+There is a nice little trick to do this by using the Arrays.asList() method,
+but remember the List returned by this class has some differences with ArrayList,
+please check the answer to understand what are those differences.
+
+
+10. How to sort ArrayList in Java? 
+Answer: 
+You can easily sort the ArrayList by using Collections.sort() method,
+all you need to make sure is that elements implement either the Comparable or Comparator interface.
+The former is used to sort on natural order while the latter is used while sorting in the custom order.
