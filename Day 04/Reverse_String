@@ -1,0 +1,16 @@
+class Solution {
+    public void reverseString(char[] s) {
+        
+help(s,0,s.length-1);
+}
+    
+public void help(char[] str, int start, int end) {
+if(start>end)
+return;
+
+    char temp = str[start];
+    str[start] = str[end];
+    str[end] = temp;
+    help(str,start+1,end-1);
+}
+}
