@@ -30,5 +30,6 @@ The right boundary are node 1,3,6,10. (10 is the right-most node).
 So order them in anti-clockwise without duplicate nodes we have [1,2,4,7,8,9,10,6,3].
 Note:
 The number of nodes in the tree will be in the range [1, 1000].
+
 time complexity: O(n)
 space complexity: O(n)
