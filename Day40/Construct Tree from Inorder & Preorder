@@ -1,0 +1,86 @@
+
+import java.util.*;
+import java.io.*;
+class Node
+{
+    int data; 
+    Node left, right;
+    Node(int key)
+    {
+        data = key;
+        left = right = null;
+    }
+}
+
+class GFG
+{
+    public static void main (String[] args)
+    {
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        
+        while(t-- > 0)
+        {
+            int n = sc.nextInt();
+            Node root = null;
+            int inorder[] = new int[n];
+            int preorder[] = new int[n];
+            for(int i = 0; i < n; i++)
+              inorder[i] = sc.nextInt();
+              
+            for(int i = 0; i < n; i++)
+              preorder[i] = sc.nextInt();
+              
+            Solution ob = new Solution();
+            root = ob.buildTree(inorder, preorder, n);
+            postOrdrer(root);
+            System.out.println();
+        }
+    }
+    
+    public static void postOrdrer(Node root)
+    {
+        if(root == null)
+          return;
+          
+        postOrdrer(root.left);
+        postOrdrer(root.right);
+        System.out.print(root.data + " ");
+    }
+}
+class Solution
+{
+   public Node buildTree(int inorder[], int preorder[], int n)
+    {
+         
+        return solve(inorder, preorder, 0, preorder.length-1);
+    }
+    Node root;
+    int preIndex = 0;
+    Node solve(int in[], int pre[], int inStrt, int inEnd)
+    {
+        if (inStrt > inEnd)
+            return null;
+            
+        Node tNode = new Node(pre[preIndex++]);
+
+        if (inStrt == inEnd)
+            return tNode;
+
+        int inIndex = search(in, inStrt, inEnd, tNode.data);
+        
+        tNode.left = solve(in, pre, inStrt, inIndex - 1);
+        tNode.right = solve(in, pre, inIndex + 1, inEnd);
+
+        return tNode;
+    }
+    int search(int arr[], int strt, int end, int value)
+    {
+        int i;
+        for (i = strt; i <= end; i++) {
+            if (arr[i] == value)
+                return i;
+        }
+        return i;
+    }
+}
