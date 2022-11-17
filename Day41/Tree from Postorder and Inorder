@@ -1,0 +1,77 @@
+
+import java.util.*;
+
+class Node {
+    int data;
+    Node left;
+    Node right;
+
+    Node(int value) {
+        data = value;
+        left = null;
+        right = null;
+    }
+}
+
+class InorderPostorderToTree {
+    public void preOrder(Node root) {
+        if (root == null) return;
+
+        System.out.print(root.data + " ");
+        preOrder(root.left);
+
+        preOrder(root.right);
+    }
+
+    public static void main(String args[]) {
+        Scanner sc = new Scanner(System.in);
+        InorderPostorderToTree ip = new InorderPostorderToTree();
+        int T = sc.nextInt();
+        while (T > 0) {
+            int n = sc.nextInt();
+            int inorder[] = new int[n];
+            int postorder[] = new int[n];
+            for (int i = 0; i < n; i++) inorder[i] = sc.nextInt();
+            for (int i = 0; i < n; i++) postorder[i] = sc.nextInt();
+            GfG g = new GfG();
+            Node root = g.buildTree(inorder, postorder, n);
+            ip.preOrder(root);
+            System.out.println();
+
+            T--;
+        }
+    }
+}
+
+class GfG
+{
+    //Function to return a tree created from postorder and inoreder traversals.
+    static Node buildTree(int[] postOrder, int postStart, int postEnd,int[] inOrder, 
+                            int inStart, int inEnd,HashMap<Integer, Integer> map)
+        {
+		
+		if(postStart>postEnd && inStart>inEnd) 
+		   return null;
+		
+		Node root=new Node(postOrder[postEnd]);
+	
+		int inroot=map.get(root.data);
+		int numleft=inroot-inStart;  
+		
+		root.left=buildTree(postOrder,postStart,postStart+numleft-1,inOrder,inStart,inroot-1,map);
+		root.right=buildTree(postOrder,postStart+numleft,postEnd-1,inOrder,inroot+1,inEnd,map);
+
+		return root;
+	}
+    
+    //Function to return a tree created from postorder and inoreder traversals.
+    Node buildTree(int inOrder[], int postOrder[], int n) {
+        HashMap <Integer,Integer> map=new HashMap<>();
+		for(int i=0;i<inOrder.length;i++) {
+			map.put(inOrder[i], i);
+		}
+		
+	    return buildTree(postOrder,0,n-1,inOrder,0,n-1,map);
+       
+    }
+}
