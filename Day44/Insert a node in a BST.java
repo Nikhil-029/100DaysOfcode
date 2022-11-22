@@ -14,6 +14,7 @@ class Node {
     }
 }
 
+
 class GFG {
     static Node buildTree(String str) {
         // Corner Case
