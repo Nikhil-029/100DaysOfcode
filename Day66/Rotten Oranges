@@ -1,0 +1,82 @@
+//{ Driver Code Starts
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+class GFG
+{
+    public static void main(String[] args) throws IOException
+    {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int T = Integer.parseInt(br.readLine().trim());
+        while(T-->0)
+        {
+            String[] s = br.readLine().trim().split(" ");
+            int n = Integer.parseInt(s[0]);
+            int m = Integer.parseInt(s[1]);
+            int[][] grid = new int[n][m];
+            for(int i = 0; i < n; i++){
+                String[] S = br.readLine().trim().split(" ");
+                for(int j = 0; j < m; j++){
+                    grid[i][j] = Integer.parseInt(S[j]);
+                }
+            }
+            Solution obj = new Solution();
+            int ans = obj.orangesRotting(grid);
+            System.out.println(ans);
+        }
+    }
+}
+// } Driver Code Ends
+
+
+class Solution
+{
+    //Function to find minimum time required to rot all oranges. 
+    public int orangesRotting(int[][] grid)
+    {
+        // Code here
+        int freshCount = 0;
+        int R = grid.length;
+        int C = grid[0].length;
+        Queue<int[]> q = new LinkedList<>();
+        
+        for (int r = 0; r < R; r++)
+        {
+            for (int c = 0; c < C; c++)
+            {
+                if (grid[r][c] == 1) freshCount++;
+                if (grid[r][c] == 2) q.offer(new int[]{r,c});
+            }
+        }
+        
+        return bfs(q, grid, freshCount);
+    }
+    
+    int bfs(Queue<int[]> q, int[][] grid, int freshCount){
+        int[][] dirs = new int[][]{{0,1},{1,0}, {-1,0}, {0,-1}};
+        int R = grid.length;
+        int C = grid[0].length;
+        
+        int dist = 0;
+        while (!q.isEmpty()){
+            int layerSize = q.size();
+            for (int i = 0; i < layerSize; i++)
+            {
+                int[] cur = q.poll();
+                for (int[] dir : dirs)
+                {
+                    int nr = cur[0] + dir[0];
+                    int nc = cur[1] + dir[1];
+                    if (0 <= nr && nr < R && 0 <= nc && nc < C && grid[nr][nc] == 1)
+                    {
+                        grid[nr][nc] = 2; //It's rotten now.
+                        q.offer(new int[]{nr, nc});
+                        freshCount--; //Decrease the count of fresh orranges
+                    }
+                }
+            }
+            dist++;
+        }
+      return freshCount == 0 ? Math.max(0, dist - 1) : -1;
+    }
+}
