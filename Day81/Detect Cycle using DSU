@@ -1,0 +1,67 @@
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+class GFG
+{
+    public static void main(String[] args) throws IOException
+    {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int T = Integer.parseInt(br.readLine().trim());
+        while(T-->0)
+        {
+            String[] s = br.readLine().trim().split(" ");
+            int V = Integer.parseInt(s[0]);
+            int E = Integer.parseInt(s[1]);
+            ArrayList<ArrayList<Integer>>adj = new ArrayList<>();
+            for(int i = 0; i < V; i++)
+                adj.add(i, new ArrayList<Integer>());
+            for(int i = 0; i < E; i++){
+                String[] S = br.readLine().trim().split(" ");
+                int u = Integer.parseInt(S[0]);
+                int v = Integer.parseInt(S[1]);
+                adj.get(u).add(v);
+                adj.get(v).add(u);
+            }
+            Solution obj = new Solution();
+            int ans = obj.detectCycle(V, adj);
+            System.out.println(ans);
+        }
+    }
+}
+
+class Solution
+{
+    //Function to detect cycle using DSU in an undirected graph.
+    public int detectCycle(int V, ArrayList<ArrayList<Integer>> adj)
+    {
+        //create a boolean visited array to track the record of visited elements
+        boolean visited[] = new boolean[V];
+        //call dfs for all non-visited vertices
+        for(int i=0;i<V;i++){
+            if(visited[i]==false){
+                int count = 0;
+                if(dfs(adj,i,count,visited)){
+                    return 1;
+                }
+            }
+        }
+        return 0;
+    }
+    private boolean dfs(ArrayList<ArrayList<Integer>> graph,int src,int count,boolean [] visited){
+        ///mark the visited vertices 
+        visited[src]= true;
+        //call the neighbours
+        for(int nbr:graph.get(src)){
+        //cycle means the nbr of vertics would be src but the number of vertices between that nbr and src would be >=2
+            if(visited[nbr]==true && count>=2){
+                return true;
+            }
+            else if(visited[nbr]==false){
+                //call dfs
+                boolean val = dfs(graph,nbr,count+1,visited);
+                if(val)return true;
+            }
+        }
+        return false;
+    }
+}
