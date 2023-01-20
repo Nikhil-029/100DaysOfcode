@@ -1,0 +1,75 @@
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+class GFG
+{
+    public static void main(String[] args) throws IOException
+    {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int T = Integer.parseInt(br.readLine().trim());
+        while(T-->0)
+        {
+            int n = Integer.parseInt(br.readLine().trim());
+            int[] nums = new int[n];
+            String[] S = br.readLine().trim().split(" ");
+            for(int i = 0; i < n; i++){
+                nums[i] = Integer.parseInt(S[i]);
+            }
+            Solution obj = new Solution();
+            int ans = obj.minSwaps(nums);
+            System.out.println(ans);
+       }
+    }
+}
+
+class Solution
+{
+    //Function to find the minimum number of swaps required to sort the array.
+    public int minSwaps(int nums[])
+    {
+        int n = nums.length;
+        ArrayList<Pair> temp = new ArrayList<>();
+        
+        for(int i = 0; i < n; i++){
+            temp.add(new Pair(nums[i], i));
+        }
+        
+        Collections.sort(temp, (p1, p2) -> {
+            return (p1.num - p2.num);
+        });
+        
+        int count = 0;
+        for(int i = 0; i < n; i++){
+            
+            while(i != temp.get(i).index){
+                count++;
+                swap(temp.get(i), temp.get(temp.get(i).index));
+            }
+        }
+        
+        return count;
+        
+    }
+    
+    public static void swap(Pair p1, Pair p2){
+        
+        int temp = p1.num;
+        p1.num   = p2.num;
+        p2.num   = temp;
+        
+        temp     = p1.index;
+        p1.index = p2.index;
+        p2.index = temp;
+    }
+}
+
+class Pair{
+    
+    int num;
+    int index;
+    
+    Pair(int num, int index){
+        this.num = num;
+        this.index = index;
+    }
+}
