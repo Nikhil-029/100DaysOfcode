@@ -1,0 +1,10 @@
+Minimum Spanning Tree
+=====================
+
+Minimum Spanning Tree (MST) is a subset of the edges of a connected, edge-weighted undirected graph that connects all the vertices together, without any cycles and with the minimum possible total edge weight. A minimum spanning tree for a weighted, connected and undirected graph is a spanning tree with weight less than or equal to the weight of every other spanning tree. The weight of a spanning tree is the sum of weights given to each edge of the spanning tree.
+
+The problem of finding a minimum spanning tree is also known as the minimum spanning tree problem. The problem is a special case of the minimum cost spanning tree problem, which is the problem of finding a spanning tree whose total edge weight is minimized among all spanning trees in the graph. The problem is also related to the shortest path problem, which is the problem of finding a path between two vertices in a graph such that the sum of the weights of its constituent edges is minimized.
+
+The minimum spanning tree problem is a special case of the minimum cost spanning tree problem, which is the problem of finding a spanning tree whose total edge weight is minimized among all spanning trees in the graph. The problem is also related to the shortest path problem, which is the problem of finding a path between two vertices in a graph such that the sum of the weights of its constituent edges is minimized.
+
+The minimum spanning tree problem is a special case of the minimum cost spanning tree problem, which is the problem of finding a spanning tree whose total edge weight is minimized among all spanning trees in the graph. The problem is also related to the shortest path problem, which is the problem of finding a path between two vertices in a graph such that the sum of the weights of its constituent edges is minimized.
